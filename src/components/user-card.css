@@ -1,0 +1,28 @@
+.card {
+  @apply bg-red-800;
+}
+
+.form {
+  @apply p-6 bg-white rounded-md;
+}
+
+.form form div {
+  @apply flex flex-col;
+}
+
+.form form div label {
+  @apply font-bold text-lg;
+}
+
+.form form div input {
+  @apply mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
+  focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500;
+}
+
+.form form button {
+  @apply mt-3 bg-violet-500 hover:bg-violet-600 focus:outline-none focus:ring focus:ring-violet-300 active:bg-violet-700 px-5 py-2 text-base leading-5 rounded font-semibold text-white;
+}
+
+.user-list {
+  @apply mt-6 bg-white rounded-md;
+}

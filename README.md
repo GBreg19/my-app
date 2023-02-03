@@ -1,70 +1,96 @@
-# Getting Started with Create React App
+1. შექმენით ორი კომპონენტი Parent და Child(სახელები შეგიძლიათ შეცვალოთ):
+   Parent კომპონენტმა უნდა ჩააწოდოს Child კომპონენტს იუზერების მასივი( ობიექტების მასივი, სადაც თითოეული ობიექტი შეიცავს იუზერის სახელს,ასაკს,გვარს და აიდის), თუმცა მასივი შეიძლება ცარიელი იყოს.ასევე Child კომპონენტმა უნდა მიიღოს მეორე boolean prop-ი: isUserLoggedIn..
+   .თუ იუზერი დალოგინებულია(isUserLoggedIn=true) Child კომპონენტმა უნდა დაარენდეროს იუზერების შესახებ ინფორმაცია(სახელი,გვარი ასაკი) ხოლო თუ იუზერების მასივი ცარიელია უნდა გამოიტანოს ტექსტი: no users in the system.
+   თუ იუზერი არ არის დალოგინებული Child კომპონენტმა უნდა გამოიტანოს ტექსტი:you are not authorized to see user list.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+2. შექმენით Wrapper,Navbar და Footer კომპონენტები. Navbar-ში და Footer-ში შეგიძლია უბრალოდ ტექსტიც გამოიტანოთ. Wrapper კომპონენტმა უნდა დაარენდეროს Navbar და Footer კომპონენტები, ხოლო მათ შორის ყველა children,რომელსაც Wrapper-ი მიიღებს. გამოიყენეთ Wrapper კომპონენტი ისე,რომ აპლიკაციაში ნებისმიერ ადგილას დამატებული კომპონენტი მოქცეული იყოს navbar-სა და footer-ს შორის.
 
-## Available Scripts
+3. კომპონენტის გარეთ შექმენით ფუნქცია generateUsers, რომელიც დააბრუნებს ათ იუზერს.
+   კომპონენტის mount-ისას დასეტეთ users სტეიტი იმ მნიშვნელობით რომელსაც აბრუნებს generateUsers. setState(generateUsers())
+   დაარენდერეთ ეს ლისტი აპლიკაციაში.
+   ასევე ლისტის ქვემოთ დაამატეთ ღილაკი,რომელსაც დაუმატებთ დაჭერის ივენთს (პრეზენტაციაში შეგხვდებათ სინტაქსი). ღილაკის თითოეულმა დაჭერამ უნდა წაშალოს შემთხვევითი წევრი user მასივიდან.
+   ასევე ყოველ ჯერზე როცა user-ების მასივი შეიცვლება უნდა განახლდეს საიტის title შემდეგნაირად: დარჩა x იუზერი (დარჩა 10 იუზერი)
+   (3 users left title)
 
-In the project directory, you can run:
+4.
 
-### `npm start`
+1)  მესამე ვორქშოფის დავალება დაწერეთ ოღონდ კლას კომპონენტებით.
+    Ა სევე ამ კომპონენტის მშობელში (მაგალითად თუ დაარენდერებთ App კომპონენტში App იქნება მშობელი) უნდა იყოს სტეიტი showUsersList. ეს სტეიტი იქნება boolean და მნიშვნელობა შეეცვლება ღილაკზე დაჭერით(მშობელშივეა ეს ღილაკი). Ღ ილაკზე დაჭერა ყოველთვის დასეტავს showUsersList არსებული მნიშვნელობის საპირისპირო მნიშვნელობით. თუ ეს სტეიტი არის true გამოაჩინეთ კომპონენტი,რომელიც არენდერებს ლისტს,წინააღმდეგ შემთხვევაში არა. ამ კომპონენტს ექნება თითქმის იგივე ფუნქციონალი რაც წინა დავალებაში ფუნქციურით გავაკეთეთ(ოღონდ კლას კომპონენტებით დავწერთ),უბრალოდ ერთი დამატებით: როცა ეს კომპონენტი unmount-ს გააკეთებს უნდა შეიცვალოს სათაური რომელსაც ყოველი მასივის ცვლილებაზე ვსეტავდით(სახელი რაც გინდათ ის იყოს).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2)  Შ ექმენით სტეიტი,რომელიც შეინახავს იუზერების მასივს (თავიდან მასივი ცარიელია)
+    დაამატეთ სამი ღილაკი:
+    add დაამატებს მომხმარებლებს მომხმარებლის მასივში
+    delete წაშლის კონკრეტულ მომხმარებელს
+    update რომელიც განაახლებს კონკრეტულ მომხმარებელს
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+add ღილაკზე დაჭერისას დაამატეთ მომხმარებელი სახელით,რენდომ ასაკით(10-დან 60-მდე) და აიდით (აიდის დასაგენერირებლად შეგიძლიათ გამოიყენოთ new Date.toString() მეთოდი)
 
-### `npm test`
+მასივში არსებული ელემენტები უნდა გამოიტანოთ ეკრანზე(გამოიტანეთ სახელი და ასაკი) და თითოეული ელემენტისთვის უნდა გქონდეთ delete და update ღილაკები.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+delete ღილაკი ფუნქციას გადასცემს აიდის,რისი გამოყენებითაც მოცემული users- სტეიტიდან მომხმარებელი წაიშლება.
+Update ღილაკს გადაეცით აიდი და რენდომ ასაკი,რომლის მიხედვითაც დააფდეითდება მოცემული მომხმარებელი.
 
-### `npm run build`
+Რ ოგორც ლექციაზე ვთქვით, თუ გვინდა რომ ღილაკზე მიმაგრებულ ფუნქციას პარამეტრი გადავცეთ უნდა დავწეროთ შემდეგნაირი სინტაქსი:
+<button onClick={ ()=>someFunc(1)} > click </button>. ბოლო ვორქშოფს უყურეთ მიზეზის გასაგებად.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+useEffect-ის გამოყენებით მომხმარებლის წაშლაზე,დამატებაზე ან განახლებაზე გამოიტანეთ ალერტი შესაბამისი ტექსტით (‘deleted’,’added’,’updated’) ალერტი window ობიექტს ეკუთვნის და რეაქტის სპეციფიკი არ არის.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+მითითება : შეგიძლია შექმნათ სტეიტი,რომელიც დამატება/წაშლა/განახლებაზე დაისეტება და მისი გამოყენებით გამოიტანოთ ალერტის ტექსტი.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+5.Შ შექმენით აპლიკაცია,რომელიც დაამატებს იუზერებს:
+აპლიკაციაში უნდა გქონდეთ რამდენიმე ინფუთი:
+სახელი
+გვარი
+მეილი
+ასაკი
+Ს სქესი (select)
+Მ მომხმარებელს უნდა შეეძლოს იუზერების დამატება,წაშლა და განახლება.
+იუზერის დამატებისას იუზერის ობიექტში უნდა ჩაუწეროთ უნიკალური აიდი.
+იუზერის დამატებისას ან ედიტირებისას ყველა ინფუთს უნდა ჰქონდეს ვალიდაცია:
+Ს სახელი - მინიმუმ 4 ასო და სავალდებულო
+გვარი - მინიმუმ 4 ასო და სავალდებულო
+მეილი - არასავალდებულო, მაგრამ თუ მომხმარებელი შეიყვანს რამეს ამ შემთხვევაში უნდა შემოწმდეს შეიცავს თუ არა შეყვანილი სტრინგი შემდეგ მონაკვეთს: @gmail.com
+ასაკი - მინიმუმ 18
+Ს სქესი - სავალდებულო
 
-### `npm run eject`
+როცა მომხმარებელი ედიტს დააჭერს ყველა ინფუთი უნდა შეივსოს იმ მნიშვნელობებით რაც იუზერს აქვს (მაგალითად ედიტზე დაჭერისას იუზერ დემნას სახელი,გვარი, მეილი (არსებობის შემთხვევაში), სქესი და ასაკი უნდა ჩაიწეროს ინფუთებში,რათა მომხმარებელმა შეძლოს რედაქტირება. შენახვა ღილაკზე დაჭერის შემდეგ მომხმარებლის ინფორმაცია განახლდება.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+ასევე დამატების ან განახლების დასრულების შემდეგ ინფუთები უნდა დაცარიელდეს.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Შ შეასრულეთ დავალება ორნაირად:
+controlled component - ყოველი შეყვანისას გააკეთეთ field-ზე ვალიდაცია.
+uncontrolled component - გამოიყენეთ useRef ინფუთების დატის წასაკითხად და მხოლოდ დამატების/განახლების ღილაკზე დაჭერისას გამოიტანეთ ვალიდაციის ერორები.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+6. გამოიყენეთ მეხუთე დავალებაში მოცემული ფორმები და გამოიყენეთ ჩემს მიერ მოწოდებული API,რომ გააგზავნოთ შემდეგი რექუესტები:
+   github link: https://github.com/demna-miqava/workshop6-api
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+მომხმარებლების ლისტის წამოღება: http://localhost:3001/users
+მომხმარებლის დამატება: http://localhost:3001/users
+მომხმარებლის განახლება: http://localhost:3001/users/${userId} 
+ მომხმარებლის წაშლა:  http://localhost:3001/users/${userId}
 
-## Learn More
+თითოეული რექუესტის დაწყებისას უნდა დაისეტოს loading სტეიტი და გამოჩნდეს ეკრანზე სპინერი, დასრულებისას კი გაქრეს.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+მოხმარებლის დამატების,განახლების ან წაშლის რექუესტების დასრულების შემდეგ მაშინვე უნდა წამოვიღოთ მომხმარებლების განახლებული სია და გამოვაჩინოთ ეკრანზე.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+7.  ვორქშოფის ბოლოში მოცემული ფოლდერ სტრუქტურის მიხედვით დაამატეთ რამდენიმე კომპონენტი და გასტილეთ(გამოიყენეთ რომელიმე დიზაინის ბიბლიოთეკა ან უბრალოდ css):
+    Რ რეგისტრაცია და ლოგინის ფორმები
+    პროდუქტების კომპონენტი სადაც დაარენდერებთ პროდუქტის ქარდს
+    Პ პროდუქტის ქარდი სადაც გამოიტანთ პროდუქტის ფოტოს, ფასს,კალათაში დამატების ღილაკს და ა.შ.
+    კალათის კომპონენტი,რომელიც დაარენდერებს კალათაში დამატებულ პროდუქტებს. თითოეულ ელემენტს ექნება + და - ღილაკები რაც მათ რაოდენობას შეცვლის, თუ რაოდენობა 0 გახდა პროდუქტი ამოვარდება კალათიდან.
+    მოცემული კომპონენტებისთვის ამ ეტაპზე ძირითადად იმუშავეთ დიზაინზე.
 
-### Code Splitting
+შექმენით todo list აპლიკაცია შემდეგი კომპონენტებით:
+TodoList რომელიც დაარენდერებს TodoItem კომპონენტს,რომელშიც იქნება წაშლა განახლების ღილაკები.
+Todo-ს ედიტ ღილაკზე დაჭერისას AddTodo კომპონენტის ფილდები შეივსებიან შესაბამისი todo-s მნიშვნელობებით,სხვა შემთხვევაში ეს კომპონენტი ახალ todo-ს დაამატებს ლისტში.
+Nav სადაც გამოჩნდება იუზერის სახელი და რამდენი todo აქვს.
+იუზერს ექნება სახელი,აიდი,როლი,isLoggedIn.
+თუ იუზერის როლი ადმინია, საშუალება მიეცით დააედიტოს ან წაშალოს todo,წინააღმდეგ შემთხვევაში არ გამოაჩინოთ ღილაკები.
+თუ იუზერი დალოგინებული არაა საერთოდ არ გამოვაჩინოთ todo ლისტი.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+გამოიყენეთ კონტექსტ(ებ)ი (როცა საჭირო იქნება, ამავდროულად გამოიყენეთ ლოკალური სტეიტი სადაც საჭიროდ ჩათვლით) ამ დავალების ამოსახსნელად.
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+8. Მეექვსე ვორქშოფში მოცემული ბექის მიხედვით დაამატეთ შემდეგი ფუნქციონალი redux toolkit-ის გამოყენებით..
+   მომხმარებლის ლისტის წამოღება
+   Მომხმარებლის დამატება
+   Მოხმარებლის წაშლა
